@@ -10,10 +10,20 @@ Add up all of the invalid IDs and return value
 '''
 
 def part1(data: str) -> int:
-    lines = data.strip().split('\n')
-    # Your solution here
-    print(lines)
-    return 0
+    lines = data.strip().split(',')
+    result = 0
+    for line in lines:
+        firstId, lastId = line.split('-')
+        start, end = int(firstId), int(lastId)
+
+        for num in range(start, end + 1):
+            s = str(num)
+            firstHalf = s[:len(s)//2]
+            secondHalf = s[len(s)//2:]
+            if firstHalf == secondHalf:
+                result += num
+
+    return result
 
 def part2(data: str) -> int:
     lines = data.strip().split('\n')
